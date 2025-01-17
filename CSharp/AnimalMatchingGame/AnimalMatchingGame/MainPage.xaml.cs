@@ -2,7 +2,6 @@
 {
     public partial class MainPage : ContentPage
     {
-
         public MainPage()
         {
             InitializeComponent();
@@ -10,26 +9,28 @@
 
         private void PlayAgainButton_Clicked(object sender, EventArgs e)
         {
-            AnimalButtons.IsVisible = true;
+            ColorButtons.IsVisible = true;
             PlayAgainButton.IsVisible = false;
 
-            List<string> animalEmoji = [
-                "🐙", "🐙",
-                "🐡", "🐡",
-                "🐘", "🐘",
-                "🐳", "🐳",
-                "🐪", "🐪",
-                "🦕", "🦕",
-                "🦘", "🦘",
-                "🦔", "🦔",
+            List<Color> colors =
+            [
+                Colors.HotPink, Colors.HotPink,
+                Colors.RoyalBlue, Colors.RoyalBlue,
+                Colors.IndianRed, Colors.IndianRed,
+                Colors.MediumAquamarine, Colors.MediumAquamarine,
+                Colors.SaddleBrown, Colors.SaddleBrown,
+                Colors.MediumPurple, Colors.MediumPurple,
+                Colors.ForestGreen, Colors.ForestGreen,
+                Colors.BurlyWood, Colors.BurlyWood,
             ];
 
-            foreach (var button in AnimalButtons.Children.OfType<Button>())
+            foreach (var button in ColorButtons.Children.OfType<Button>())
             {
-                int index = Random.Shared.Next(animalEmoji.Count);
-                string nextEmoji = animalEmoji[index];
-                button.Text = nextEmoji;
-                animalEmoji.RemoveAt(index);
+                button.IsEnabled = true;
+                int index = Random.Shared.Next(colors.Count);
+                Color nextColor = colors[index];
+                button.BackgroundColor = nextColor;
+                colors.RemoveAt(index);
             }
 
             Dispatcher.StartTimer(TimeSpan.FromSeconds(.1), TimerTick);
@@ -63,23 +64,22 @@
         {
             if (sender is Button buttonClicked)
             {
-                if (!string.IsNullOrWhiteSpace(buttonClicked.Text) && (findingMatch == false))
+                if (findingMatch == false)
                 {
-                    buttonClicked.BackgroundColor = Colors.Red;
                     lastClicked = buttonClicked;
+                    lastClicked.BackgroundColor = buttonClicked.BackgroundColor;
                     findingMatch = true;
                 }
                 else
                 {
-                    if ((buttonClicked != lastClicked) && (buttonClicked.Text == lastClicked.Text)
-                         && (!String.IsNullOrWhiteSpace(buttonClicked.Text)))
+                    if (buttonClicked.BackgroundColor.Equals(lastClicked.BackgroundColor)
+                        && buttonClicked != lastClicked)
                     {
                         matchesFound++;
-                        lastClicked.Text = " ";
-                        buttonClicked.Text = " ";
+                        lastClicked.IsEnabled = false;
+                        buttonClicked.IsEnabled = false;
                     }
-                    lastClicked.BackgroundColor = Colors.LightBlue;
-                    buttonClicked.BackgroundColor = Colors.LightBlue;
+
                     findingMatch = false;
                 }
             }
@@ -87,11 +87,9 @@
             if (matchesFound == 8)
             {
                 matchesFound = 0;
-                AnimalButtons.IsVisible = false;
+                ColorButtons.IsVisible = false;
                 PlayAgainButton.IsVisible = true;
             }
         }
-
     }
-
 }
