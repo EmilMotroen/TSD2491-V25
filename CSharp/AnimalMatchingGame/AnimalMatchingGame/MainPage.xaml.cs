@@ -89,9 +89,8 @@
                 matchesFound = 0;
                 AnimalButtons.IsVisible = false;
                 PlayAgainButton.IsVisible = true;
+                PlayAgainButton.Text = "Play Again";
             }
         }
-
     }
-
 }
