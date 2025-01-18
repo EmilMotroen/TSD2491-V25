@@ -1,2 +1,15 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿namespace MyFirstConsoleApp {
+    class Program
+    {
+        public static void Main()
+        {
+        
+            Testclass testClass = new Testclass();
+
+            testClass.printMessage("HelloWorld!!!");
+
+            testClass.printMessage("Velkomme til TSD2491 - V2025");
+                
+        }
+    }
+}
