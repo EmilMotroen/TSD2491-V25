@@ -3,13 +3,13 @@ namespace SloppyJoe;
 class MenuItem
 {
     public string[] Proteins = [
-                "Roast beef", "Salami", "Turkey",
-                "Ham", "Pastrami", "Tofu"
+        "Roast beef", "Salami", "Turkey",
+        "Ham", "Pastrami", "Tofu"
     ];
 
     public string[] Condiments = [
-                "yellow mustard", "brown mustard",
-                "honey mustard", "mayo", "relish", "French dressing"
+        "yellow mustard", "brown mustard",
+        "honey mustard", "mayo", "relish", "French dressing"
     ];
 
     public string[] Breads = ["rye", "white", "wheat", "pumpernickel", "a roll"];
