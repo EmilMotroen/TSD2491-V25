@@ -1,36 +1,36 @@
 class SwordDamage
+{
+    public const int BASE_DAMAGE = 3;
+    public const int FLAME_DAMAGE = 2;
+
+    public int Roll;
+    public decimal MagicMultiplier = 1M;
+    public int Damage;
+
+    public void CalculateDamage()
     {
-        public const int BASE_DAMAGE = 3;
-        public const int FLAME_DAMAGE = 2;
+        Damage = (int)(Roll * MagicMultiplier) + BASE_DAMAGE;
+    }
 
-        public int Roll;
-        public decimal MagicMultiplier = 1M;
-        public int Damage;
-
-        public void CalculateDamage()
+    public void SetMagic(bool isMagic)
+    {
+        if (isMagic)
         {
-            Damage = (int)(Roll * MagicMultiplier) + BASE_DAMAGE;
+            MagicMultiplier = 1.75M;
         }
-
-        public void SetMagic(bool isMagic)
+        else
         {
-            if (isMagic)
-            {
-                MagicMultiplier = 1.75M;
-            }
-            else
-            {
-                MagicMultiplier = 1M;
-            }
-            CalculateDamage();
+            MagicMultiplier = 1M;
         }
+        CalculateDamage();
+    }
 
-        public void SetFlaming(bool isFlaming)
+    public void SetFlaming(bool isFlaming)
+    {
+        CalculateDamage();
+        if (isFlaming)
         {
-            CalculateDamage();
-            if (isFlaming)
-            {
-                Damage += FLAME_DAMAGE;
-            }
+            Damage += FLAME_DAMAGE;
         }
     }
+}
