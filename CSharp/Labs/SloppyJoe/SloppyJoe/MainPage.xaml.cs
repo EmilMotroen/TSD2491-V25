@@ -3,11 +3,11 @@ namespace SloppyJoe;
 
 public partial class MainPage : ContentPage
 {
-	
 	public MainPage()
 	{
 		InitializeComponent();
-		MakeTheMenu();
+        MakeTheMenu();
+        BackgroundImageSource = "dotnet_bot.png"; // Image must be in Resources/Images directory
 	}
 
     private void MakeTheMenu()
